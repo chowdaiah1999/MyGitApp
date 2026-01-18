@@ -33,4 +33,72 @@ public class PrintNumbers {
         }
     }
 }
+import java.util.Scanner;
+
+class Student {
+    int id;
+    String name;
+    int marks;
+
+    // Method to read student details
+    void inputDetails(Scanner sc) {
+        System.out.print("Enter Student ID: ");
+        id = sc.nextInt();
+
+        sc.nextLine(); // consume newline
+        System.out.print("Enter Student Name: ");
+        name = sc.nextLine();
+
+        System.out.print("Enter Marks: ");
+        marks = sc.nextInt();
+    }
+
+    // Method to display student details
+    void displayDetails() {
+        System.out.println("Student ID   : " + id);
+        System.out.println("Student Name : " + name);
+        System.out.println("Marks        : " + marks);
+        System.out.println("----------------------------");
+    }
+
+    // Method to calculate grade
+    String calculateGrade() {
+        if (marks >= 80)
+            return "A";
+        else if (marks >= 60)
+            return "B";
+        else if (marks >= 40)
+            return "C";
+        else
+            return "Fail";
+    }
+}
+
+public class StudentManagement {
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Enter number of students: ");
+        int n = sc.nextInt();
+
+        Student[] students = new Student[n];
+
+        // Input details
+        for (int i = 0; i < n; i++) {
+            System.out.println("\nEnter details for Student " + (i + 1));
+            students[i] = new Student();
+            students[i].inputDetails(sc);
+        }
+
+        // Display details
+        System.out.println("\n--- Student Report ---");
+        for (int i = 0; i < n; i++) {
+            students[i].displayDetails();
+            System.out.println("Grade        : " + students[i].calculateGrade());
+        }
+
+        sc.close();
+    }
+}
 
